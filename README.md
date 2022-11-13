@@ -17,12 +17,12 @@ This project was created to fulfill an assignment for a machine learning course.
 ## Demo
 #### Input
 
-![Input](https://i.ibb.co/X74f02C/Whats-App-Image-2022-11-13-at-17-55-07.jpg)
+![Input](https://i.ibb.co/z822ssw/Whats-App-Image-2022-11-13-at-17-55-07.jpg)
 
 Customer can input their name, gender, age, annual income(thousand dollars per year), and spending score.
 
 #### Output
-![Output](https://i.ibb.co/s9vzSN5/Whats-App-Image-2022-11-13-at-18-22-58.jpg)
+![Output](https://i.ibb.co/WDL9GpK/Whats-App-Image-2022-11-13-at-18-22-58.jpg)
 
 System will perform a clustering method to calculate the data sent based on the existing dataset.
 
