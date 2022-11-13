@@ -40,15 +40,15 @@ def result():
         result = ValuePredictor(to_predict_list)
 
         if float(result) == 0:
-            prediction = 'Customers with medium annual income and medium annual spend'
+            prediction = 'You are customers with medium annual income and medium annual spend'
         elif float(result) == 1:
-            prediction = 'Customers with medium to high annual income and low annual spend'
+            prediction = 'You are customers with medium to high annual income and low annual spend'
         elif float(result) == 2:
-            prediction = 'Customers with low annual income and low annual spend'
+            prediction = 'You are customers with low annual income and low annual spend'
         elif float(result) == 3:
-            prediction = 'Customers with low annual income and high annual spend'
+            prediction = 'You are customers with low annual income and high annual spend'
         elif float(result) == 4:
-            prediction = 'Customers with medium to high annual income and high annual spend'
+            prediction = 'You are customers with medium to high annual income and high annual spend'
 
         return render_template("result.html", prediction=prediction, name=name)
 
