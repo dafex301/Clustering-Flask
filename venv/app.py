@@ -30,8 +30,13 @@ def ValuePredictor(to_predict_list):
 @app.route('/result', methods=['POST'])
 def result():
     if request.method == 'POST':
-        to_predict_list = request.form.values()
-        to_predict_list = list(map(float, to_predict_list))
+        name = request.form['name']
+        gender = request.form['gender']
+        age = request.form['age']
+        annual_income = request.form['annual_income']
+        spending_score = request.form['spending_score']
+
+        to_predict_list = list(map(float, [annual_income, spending_score]))
         result = ValuePredictor(to_predict_list)
 
         if float(result) == 0:
@@ -45,7 +50,7 @@ def result():
         elif float(result) == 4:
             prediction = 'Customers with medium to high annual income and high annual spend'
 
-        return render_template("result.html", prediction=prediction)
+        return render_template("result.html", prediction=prediction, name=name)
 
 
 if __name__ == "__main__":
