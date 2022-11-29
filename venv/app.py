@@ -18,13 +18,14 @@ def index():
 
 
 # prediction function
+# Memprediksi input dari form user
 def ValuePredictor(to_predict_list):
     to_predict = np.array(to_predict_list).reshape(1, 2)
     loaded_model = pickle.load(
         open("./model/model.pkl", "rb"))  # load the model
     # predict the values using loded model
     result = loaded_model.predict(to_predict)
-    return result[0]
+    return result
 
 
 @app.route('/result', methods=['POST'])
@@ -36,18 +37,18 @@ def result():
         annual_income = request.form['annual_income']
         spending_score = request.form['spending_score']
 
-        to_predict_list = list(map(float, [annual_income, spending_score]))
+        to_predict_list = list(map(int, [annual_income, spending_score]))
         result = ValuePredictor(to_predict_list)
 
-        if float(result) == 0:
+        if int(result) == 0:
             prediction = 'You are customers with medium annual income and medium annual spend'
-        elif float(result) == 1:
+        elif int(result) == 1:
             prediction = 'You are customers with medium to high annual income and low annual spend'
-        elif float(result) == 2:
+        elif int(result) == 2:
             prediction = 'You are customers with low annual income and low annual spend'
-        elif float(result) == 3:
+        elif int(result) == 3:
             prediction = 'You are customers with low annual income and high annual spend'
-        elif float(result) == 4:
+        elif int(result) == 4:
             prediction = 'You are customers with medium to high annual income and high annual spend'
 
         return render_template("result.html", prediction=prediction, name=name)
