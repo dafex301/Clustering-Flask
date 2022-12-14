@@ -20,7 +20,7 @@ def index():
 # prediction function
 # Memprediksi input dari form user
 def ValuePredictor(to_predict_list):
-    to_predict = np.array(to_predict_list).reshape(1, 2)
+    to_predict = np.array(to_predict_list).reshape(1, 3)
     loaded_model = pickle.load(
         open("./model/model.pkl", "rb"))  # load the model
     # predict the values using loded model
@@ -37,22 +37,22 @@ def result():
         annual_income = request.form['annual_income']
         spending_score = request.form['spending_score']
 
-        to_predict_list = list(map(int, [annual_income, spending_score]))
+        to_predict_list = list(map(int, [age, annual_income, spending_score]))
         result = ValuePredictor(to_predict_list)
 
         if int(result) == 0:
-            prediction = 'You are customers with medium annual income and medium annual spend'
+            prediction = 'Kamu harus lebih rajin bekerja'
         elif int(result) == 1:
-            prediction = 'You are customers with medium to high annual income and low annual spend'
+            prediction = 'Kamu seorang pekerja keras tapi konsumtif'
         elif int(result) == 2:
-            prediction = 'You are customers with low annual income and low annual spend'
+            prediction = 'Kamu mampu mengatur keuangan dengan baik'
         elif int(result) == 3:
-            prediction = 'You are customers with low annual income and high annual spend'
+            prediction = 'Kamu biasa-biasa saja'
         elif int(result) == 4:
-            prediction = 'You are customers with medium to high annual income and high annual spend'
+            prediction = 'Kamu kemungkinan adalah pemuda/mahasiswa'
 
         return render_template("result.html", prediction=prediction, name=name)
 
 
 if __name__ == "__main__":
-    app.run(debug=False)  # use debug = False for jupyter notebook
+    app.run()  # use debug = False for jupyter notebook
